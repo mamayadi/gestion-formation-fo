@@ -36,7 +36,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
   private handleAuthError(err: HttpErrorResponse): Observable<any> {
     // handle your auth error or rethrow
-    if (err.status === 401 || err.status === 403) {
+    if (err.status === 401 || err.status === 403 || err.status === 0) {
       // navigate /delete cookies or whatever
       this.tokenStorageService.clearToken();
       this.router.navigateByUrl(`/public`);
