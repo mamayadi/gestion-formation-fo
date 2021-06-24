@@ -59,6 +59,7 @@ export class EditFormateurComponent implements OnInit {
     if (this.formateurForm.valid) {
       const inputValues = this.formateurForm.getRawValue();
       const formateur: Formateur = {
+        id: this.formateur.id,
         nom: inputValues.nomControl,
         prenom: inputValues.prenomControl,
         username: inputValues.usernameControl,

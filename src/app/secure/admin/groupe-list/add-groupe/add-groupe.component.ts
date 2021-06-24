@@ -93,7 +93,6 @@ export class AddGroupeComponent implements OnInit {
   submitGroupe(): void {
     if (this.groupeForm.valid) {
       const inputValues = this.groupeForm.getRawValue();
-      console.log(inputValues);
       const groupe: Groupe = {
         libelle: inputValues.libelleControl,
         listEtudiant: inputValues.listEtudiantControl.map((etudiant) => {

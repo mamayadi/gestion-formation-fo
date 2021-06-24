@@ -34,9 +34,9 @@ const routes: Routes = [
       { path: 'formateur-list', component: FormateurListComponent },
       { path: 'formateur-list/add', component: AddFormateurComponent },
       { path: 'formateur-list/edit/:id', component: EditFormateurComponent },
-      { path: 'groupe', component: GroupeListComponent },
-      { path: 'groupe/add', component: AddGroupeComponent },
-      { path: 'groupe/edit/:id', component: EditGroupeComponent },
+      { path: 'groupe-list', component: GroupeListComponent },
+      { path: 'groupe-list/add', component: AddGroupeComponent },
+      { path: 'groupe-list/edit/:id', component: EditGroupeComponent },
       {
         path: '**',
         redirectTo: '/404',

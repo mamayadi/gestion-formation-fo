@@ -1,3 +1,122 @@
-<p>
-  edit-groupe works!
-</p>
+<div class="container mt-3 page-container pb-4">
+  <div class="row">
+    <div class="col">
+      <div class="d-flex align-content-center">
+        <h5 class="page-title">
+          <button mat-icon-button matTooltip="Retour" (click)="onBack()">
+            <em class="fas fa-arrow-left fa-lg"></em>
+          </button>
+          Modifier groupe
+        </h5>
+      </div>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="row mt-2">
+    <div class="col-md-3 col-sm-none"></div>
+    <div class="col-md-6 col-sm-12">
+      <form [formGroup]="groupeForm" (submit)="submitGroupe()">
+        <mat-form-field class="w-100">
+          <mat-label>Libelle</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Libelle"
+            formControlName="libelleControl"
+            required
+            autocomplete="off"
+          />
+          <mat-error *ngIf="groupeForm.controls['libelleControl'].invalid">
+            Libelle champ requis
+          </mat-error>
+        </mat-form-field>
+        <div formArrayName="listEtudiantControl">
+          <h5>List Etudiant</h5>
+          <button
+            mat-icon-button
+            matTooltip="Ajout etudiant"
+            (click)="addEtudiant()"
+          >
+            <em class="fas fa-plus"></em>
+          </button>
+          <mat-divider></mat-divider>
+          <div
+            *ngFor="let etudiantControl of etudiants.controls; let i = index"
+          >
+            <div [formGroupName]="i">
+              <button
+                mat-icon-button
+                color="error"
+                matTooltip="Supprimer etudiant"
+                (click)="removeEtudiant(i)"
+              >
+                <em class="far fa-trash-alt"></em>
+              </button>
+              <mat-form-field class="w-100">
+                <mat-label>Etudiant {{ i + 1 }}</mat-label>
+                <mat-select formControlName="etudiantControl">
+                  <mat-option
+                    *ngFor="let etudiant of etudiants$ | async"
+                    [value]="etudiant.id"
+                  >
+                    {{ getFullname(etudiant) }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="etudiantControl.invalid">
+                  Etudiant champ requis
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div formArrayName="listMatiereControl">
+          <h5>List Matiere</h5>
+          <button
+            mat-icon-button
+            matTooltip="Ajout matiere"
+            (click)="addMatiere()"
+          >
+            <em class="fas fa-plus"></em>
+          </button>
+          <mat-divider></mat-divider>
+          <div *ngFor="let matiereControl of matieres.controls; let i = index">
+            <div [formGroupName]="i">
+              <button
+                mat-icon-button
+                color="error"
+                matTooltip="Supprimer matiere"
+                (click)="removeMatiere(i)"
+              >
+                <em class="far fa-trash-alt"></em>
+              </button>
+              <mat-form-field class="w-100">
+                <mat-label>Matiere {{ i + 1 }}</mat-label>
+                <mat-select formControlName="matiereControl">
+                  <mat-option
+                    *ngFor="let matiere of matiere$ | async"
+                    [value]="matiere.id"
+                  >
+                    {{ matiere.libelle }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="matiereControl.invalid">
+                  Matiere champ requis
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <button
+          class="w-100"
+          type="submit"
+          [disabled]="groupeForm.invalid"
+          mat-raised-button
+          color="accent"
+        >
+          Sauvegarder groupe
+        </button>
+      </form>
+    </div>
+    <div class="col-md-3 col-sm-none"></div>
+  </div>
+</div>
