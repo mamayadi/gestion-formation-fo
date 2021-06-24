@@ -5,35 +5,52 @@
         <mat-list>
           <mat-list-item
             [routerLink]="['admin/admin-list']"
-            [routerLinkActive]=" ['router-active'] "
+            [routerLinkActive]="['router-active']"
           >
             <em mat-list-icon class="fas fa-user-shield"></em>
             <h5 mat-line>Admin</h5>
           </mat-list-item>
           <mat-list-item
             [routerLink]="['admin/formateur-list']"
-            [routerLinkActive]=" ['router-active'] "
+            [routerLinkActive]="['router-active']"
           >
             <em mat-list-icon class="fas fa-chalkboard-teacher"></em>
             <h5 mat-line>Formateur</h5>
           </mat-list-item>
           <mat-list-item
             [routerLink]="['admin/etudiant-list']"
-            [routerLinkActive]=" ['router-active'] "
+            [routerLinkActive]="['router-active']"
           >
             <em mat-list-icon class="fas fa-user-graduate"></em>
             <h5 mat-line>Etudiant</h5>
           </mat-list-item>
           <mat-list-item
-            [routerLink]="['admin/groupe']"
-            [routerLinkActive]=" ['router-active'] "
+            [routerLink]="['admin/groupe-list']"
+            [routerLinkActive]="['router-active']"
           >
             <em mat-list-icon class="fas fa-users"></em>
             <h5 mat-line>Groupe</h5>
           </mat-list-item>
         </mat-list>
       </ng-container>
-      <ng-container *ngSwitchCase="isEtudiant"> isEtudiant </ng-container>
+      <ng-container *ngSwitchCase="isEtudiant">
+        <mat-list>
+          <mat-list-item
+            [routerLink]="['etudiant/notes']"
+            [routerLinkActive]="['router-active']"
+          >
+            <em mat-list-icon class="fas fa-poll-h"></em>
+            <h5 mat-line>Listes de notes</h5>
+          </mat-list-item>
+          <mat-list-item
+            [routerLink]="['etudiant/presence']"
+            [routerLinkActive]="['router-active']"
+          >
+            <em mat-list-icon class="fas fa-hand-paper"></em>
+            <h5 mat-line>Taux de présence</h5>
+          </mat-list-item>
+        </mat-list>
+      </ng-container>
       <ng-container *ngSwitchDefault> isFormateur </ng-container>
     </ng-container>
   </mat-drawer>
@@ -60,7 +77,7 @@
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="logout()">
           <em class="fas fa-door-open mr-4"></em>
-          <span class="ml-2">Se déconnecter</span>
+          <span class="ml-2">&nbsp; Se déconnecter</span>
         </button>
       </mat-menu>
     </mat-toolbar>
