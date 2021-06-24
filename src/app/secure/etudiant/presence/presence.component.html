@@ -1,0 +1,63 @@
+<div class="container mt-3 page-container pb-4">
+  <div class="row mt-2">
+    <div class="col-12">
+      <div class="d-flex justify-content-between">
+        <h5 class="page-title">
+          Fiche présence pour groupe {{ groupe?.libelle }}
+        </h5>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100">
+        <!-- Matiere Column -->
+        <ng-container matColumnDef="matiere">
+          <th mat-header-cell *matHeaderCellDef>Matiere</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element?.libelle }}
+          </td>
+        </ng-container>
+
+        <!-- Nombre Heure Enseigne Column -->
+        <ng-container matColumnDef="nombreHeureEnseigne">
+          <th mat-header-cell *matHeaderCellDef>Nombre heure enseigne</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element?.nombreHeureEnseigne }}
+          </td>
+        </ng-container>
+
+        <!-- Volume Horaire Column -->
+        <ng-container matColumnDef="volumeHoraire">
+          <th mat-header-cell *matHeaderCellDef>Volume horaire</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element?.volumeHoraire }}
+          </td>
+        </ng-container>
+
+        <!-- seance Column -->
+        <ng-container matColumnDef="seance">
+          <th mat-header-cell *matHeaderCellDef>Seances</th>
+          <td mat-cell *matCellDef="let element">
+            <ul *ngFor="let seance of element.listSeance">
+              <li>{{ seance?.date | date: 'dd/MM/yyyy' }}</li>
+            </ul>
+          </td>
+        </ng-container>
+
+        <!-- presence Column -->
+        <ng-container matColumnDef="presence">
+          <th mat-header-cell *matHeaderCellDef>Presences</th>
+          <td mat-cell *matCellDef="let element">
+            <ul *ngFor="let seance of element.listSeance">
+              <li>{{ getPresenceFromSeance(seance) }}</li>
+            </ul>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </div>
+</div>
